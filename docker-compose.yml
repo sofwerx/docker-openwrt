@@ -1,0 +1,24 @@
+version: "2.1"
+
+services:
+  # Enable docker to auto-run any architecture image using qemu
+  #     docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  multiarch:
+    container_name: multiarch
+    image: multiarch/qemu-user-static:register
+    privileged: true
+    restart: "no"
+
+  openwrt:
+    build:
+      context: .
+#      args: 
+#        QEMU_ARCH: armhf
+#        OPENWRT_ARCH: armvirt
+#        QEMU_VER: v2.12.0
+    image: sofwerx/openwrt:arm
+    volumes:
+      - ./outputs/:/outputs/
+    depends_on:
+      - multiarch
+#    command: cp -r install/bin/redsocks /outputs/ 
