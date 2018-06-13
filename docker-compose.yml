@@ -19,6 +19,7 @@ services:
     image: sofwerx/openwrt:arm
     volumes:
       - ./outputs/:/outputs/
+      - ./logs/:/libevent-2.1.8-stable/config.log
     depends_on:
       - multiarch
 #    command: cp -r install/bin/redsocks /outputs/ 
